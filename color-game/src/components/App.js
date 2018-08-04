@@ -22,6 +22,8 @@ export class App extends React.Component {
 	}
 
 	render() {
+		const { squares } = this.state;
+
 		return (
 			<div>
 
@@ -29,7 +31,7 @@ export class App extends React.Component {
 
 				<Controls />
 
-				<Squares />
+				<Squares squares={squares} />
 
 	
 			</div>

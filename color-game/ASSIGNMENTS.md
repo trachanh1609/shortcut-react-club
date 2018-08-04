@@ -1,9 +1,7 @@
 # Assignments
 
-3. Make the Squares component dynamic
+4. Make the square colors random
  
-   - Pass the state attribute 'squares' as a prop to the Squares component
-   - Replace the static markup with the dynamic content (using this.props.squares.map)
-   - Don't forget to give a key to the square in order to suppress the react warnning
-   - Give your square the right 'style' prop to display the right background-color
-   - At the end you should see 6 boxes with the color you defined in the App component
+   - When the page loads, generate 6 random colors
+   - Pass a prop 'color' to the Header component that is the color of the first box in the boxes array
+   - Make the prop 'color' of the Header component be a random color from one of the boxes.
