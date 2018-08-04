@@ -27,11 +27,12 @@ export class App extends React.Component {
 
 	render() {
 		const { squares } = this.state;
+		const firstSquare = squares[0];
 
 		return (
 			<div>
 
-				<Header />
+				<Header color={firstSquare.color} />
 
 				<Controls />
 
