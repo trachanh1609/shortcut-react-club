@@ -21,18 +21,19 @@ export class App extends React.Component {
 			makeSquare(),
 			makeSquare(),
 			makeSquare(),
-			makeSquare()
+			makeSquare(),
 		]
 	}
 
 	render() {
 		const { squares } = this.state;
-		const firstSquare = squares[0];
+		const randomId = Math.floor(Math.random() * (squares.length));
+		const randomSquare = squares[randomId];
 
 		return (
 			<div>
 
-				<Header color={firstSquare.color} />
+				<Header color={randomSquare.color} />
 
 				<Controls />
 
