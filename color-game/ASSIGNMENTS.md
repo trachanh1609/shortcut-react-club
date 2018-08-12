@@ -1,9 +1,9 @@
 # Assignments
 
-2. Create the app state
+3. Make the Squares component dynamic
  
-   - The app should render squares that can change color and visibility over time
-   - Create a state object in App component
-   - Make a function 'makeSquare' that accepts numbers between 0 and 255 for r,g,b and return an object with a 'color' and 'hidden' attribute (hidden set to false) 
-   - Create an an attribute 'squares' which is array with 6 squares of different colors
-   - (Bonus) Use [React devtools](https://github.com/facebook/react-devtools) to validate that you App component has a state with an array of 6 boxes.
+   - Pass the state attribute 'squares' as a prop to the Squares component
+   - Replace the static markup with the dynamic content (using this.props.squares.map)
+   - Don't forget to give a key to the square in order to suppress the react warnning
+   - Give your square the right 'style' prop to display the right background-color
+   - At the end you should see 6 boxes with the color you defined in the App component
