@@ -1,3 +1,0 @@
-# Assignments
-
-No more assignments
