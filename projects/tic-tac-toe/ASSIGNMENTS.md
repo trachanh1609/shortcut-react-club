@@ -143,48 +143,73 @@ export default ComponentY;
 
 At the end, you should have a simpler App component that only renders child components. The application must be exactly the same in your browser.
 
-## 2. Passing data
+## 2. Rendering dynamic boxes
 
 ### Read
-
-- [Props](https://github.com/ArmandDu/shortcut-react-club/wiki/ShortDoc-Props)
 - [Rendering List of Items](https://github.com/ArmandDu/shortcut-react-club/wiki/ShortDoc-Rendering-a-List-of-Items)
-
+- [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 ### Tasks
-In you `App` component, create an object attribute named `state` with two properties:
- - `player`: a String, either 'X' or 'O'
- - `squares`: an Array of 9 elements containing null, 'X' or 'O'
+
+In your `Grid` component, you will need to dynamicly render the correct number of boxes. Later those boxes will render a X, a O or nothing depending of the properties you will provide to each box.
+
+For now, create a new attribute  `state` to your `Grid` class. We will show the special meaning of state later on.
+the state attribute is an object with one key: `boxes`. boxes is an array of 9 elements of (null, 'X' or 'O')
 
 ```javascript
-class App extends Component {
+class Grid extends Component {
 
 	state: {
-		/*...*/
+		boxes: [...]
 	}
 
 	render() {/*...*/}
 }
 ```
 
-NB: We will see the why we stored this data in `state` later.
+In your render method,
 
-
-In your `render` method in your `App` component, pass the correct state attributes as props to the correct components.
+extract the boxes from your component state then map over all the boxes in order to render your `Box` component.
 
 ```javascript
-render() {
-	const { player, squares } = this.state;
-	return (
-		<div>
-			<ComponentThatNeedsThePlayerProp player={player} />
-			<ComponentThatNeedsTheSquaresProp squares={squares} />
-			{/*...*/} 
-		</div>
-	)
+class Grid extends Component {
+
+	state: {
+		boxes: [...]
+	}
+
+	render() {
+		const { boxes } = this.state;
+
+		return (
+			<div>
+				{/*...*/}
+				{boxes.map(/*...*/)}
+				{/*...*/}
+			</div>
+		)
+	}
 }
 ```
 
-In the components that uses the props, update the code so it renders the right elements depending on the props:
+
+## 3. Passing data
+
+### Read
+
+- [Props](https://github.com/ArmandDu/shortcut-react-club/wiki/ShortDoc-Props)
+
+### Tasks
+
+In your `Grid` component, you only render the same box 9 times. Now we want the box to render differently depending of the value of each box.
+Each box from you boxes array can be null, 'X' or 'O'.
+
+The component responsible to render a `Box` in the screen is the `Box` component. This component needs to know what to render.
+In order to do that, we need to give this component some informations. We do this via `props`.
+
+For each of your `Box`es, add a prop named `value` and assign it the value of the box.
+
+
+In the `Box`component, in the render method, extract the `value` from `this.props` and return the correct JSX based on that value:
 - Whenever there is a 'X', the component should render a `<i className="fas fa-times" />`
 - Whenever there is a 'O', the component should render a `<i className="far fa-circle" />`
 - Whenever there is a null, the component doesn't render a `<i>`

@@ -3,16 +3,16 @@ import Game from "./Game";
 
 export class App extends Component {
 
-  render() {
-    return (
-      <div className="tic-tac-toe">
-        <h1>Tic Tac Toe</h1>
+	render() {
+		return (
+			<div className="tic-tac-toe">
+				<h1>Tic Tac Toe</h1>
 
-        <Game />
+				<Game />
 
-      </div>
-    )
-  }
+			</div>
+		)
+	}
 }
 
 export default App;

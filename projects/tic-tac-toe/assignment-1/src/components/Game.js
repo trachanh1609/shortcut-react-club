@@ -8,10 +8,10 @@ export class Game extends Component {
 		return (
 			<div className="game">
 
-          {/* <AlertMessage /> */}
-          <Controls />
-          <Grid boxes={[]} />
-        </div>
+				{/* <AlertMessage /> */}
+				<Controls />
+				<Grid />
+			</div>
 		)
 	}
 }
