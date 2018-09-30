@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import Highlight from 'react-highlight'
 import "highlight.js/styles/agate.css";
 
+const dict = {
+	// elementFactory: (factory) => factory("John", 33),
+	UserCardComponent: (Component) =>  <Component name={"John"} age={35} />
+}
+
 export class Exercice extends Component {
 
 	state = {
@@ -24,20 +29,24 @@ export class Exercice extends Component {
 			<div>
 				<h1>{name}</h1>
 				<div>
-					{Object.entries(values).map(([name, value], i) => (
-						<div key={name} className="exercice-row">
-							{i + 1}.&nbsp;<strong>{name}</strong> ({React.isValidElement(value) ? "React Element" : typeof value})
-							{React.isValidElement(value) ? (
-								<div className="jsx">
-									{value}
-								</div>
-							) : (
-									<Highlight className="javascript">
-										{value.toString()}
-									</Highlight>
-								)}
-						</div>
-					))}
+					{Object.entries(values).map(([name, value], i) => {
+						const data = name in dict ? dict[name](value) : value;
+
+						return (
+							<div key={name} className="exercice-row">
+								{i + 1}.&nbsp;<strong>{name}</strong> ({React.isValidElement(data) ? "React Element" : typeof data})
+							{React.isValidElement(data) ? (
+									<div className="jsx">
+										{data}
+									</div>
+								) : (
+										<Highlight className="javascript">
+											{typeof data === "object" ? JSON.stringify(data, null, 2) : data.toString()}
+										</Highlight>
+									)}
+							</div>
+						)
+					})}
 				</div>
 			</div>
 		)
