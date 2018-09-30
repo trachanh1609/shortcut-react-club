@@ -1,0 +1,88 @@
+body, html {
+	margin: 0;
+	padding: 0;
+	background: #f0f0f0
+}
+
+
+h1,h2,h3,strong,b {
+	color: #333333;
+}
+
+.app {
+	display: flex;
+	flex-flow: row;
+	/* height: inherit; */
+}
+
+
+
+.navSection {
+	width: 16rem;
+	display: flex;
+	flex-flow: column;
+	background: #333333;
+	color: #f0f0f0;
+	align-items: center;
+	position: fixed;
+	height: 100vh;
+	overflow-y: scroll
+}
+
+
+.navSection h2 {
+	color: #fafafa
+}
+.navSection ul {
+	padding: 0;
+}
+
+.navSection li {
+	list-style: none;
+	line-height: 1.8rem;
+}
+
+li a {
+	color: #f0f0f0;
+	text-decoration: none;
+}
+
+li a:hover {
+	background: #888
+}
+
+.main {
+	flex: 10;
+	margin-left: 16rem;
+	margin-bottom: 5rem;
+}
+
+.main .container {
+	margin: auto;
+	max-width: 900px;
+	padding: 0 2rem;
+}
+
+.main .container h1 {
+	text-align: center;
+}
+
+.exercice-row {
+	margin: 2rem 0;
+}
+
+.exercice-row .jsx {
+	/* style={{ border: "1px dashed blue", margin: "0.75rem 0", padding: "0.75rem" } */
+	border: 1px dashed slategrey;
+	margin: 0.75rem 0;
+	padding: 0.75rem;
+}
+
+@media all and (max-width: 1024px) {
+	.navSection {
+		width: 10rem;
+	}
+	.main {
+		margin-left: 10rem;
+	}
+}
