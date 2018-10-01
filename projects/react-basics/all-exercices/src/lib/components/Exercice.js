@@ -34,7 +34,7 @@ export class Exercice extends Component {
 
 						return (
 							<div key={name} className="exercice-row">
-								{i + 1}.&nbsp;<strong>{name}</strong> ({React.isValidElement(data) ? "React Element" : typeof data})
+								<strong>{name}</strong> ({React.isValidElement(data) ? "React Element" : typeof data})
 							{React.isValidElement(data) ? (
 									<div className="jsx">
 										{data}
