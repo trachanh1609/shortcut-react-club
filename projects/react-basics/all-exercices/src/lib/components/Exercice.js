@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
-import Highlight from 'react-highlight'
-import "highlight.js/styles/agate.css";
+import React, { Component } from 'react';
+// import "highlight.js/styles/agate.css";
 
 const dict = {
 	// elementFactory: (factory) => factory("John", 33),
@@ -29,21 +28,17 @@ export class Exercice extends Component {
 			<div>
 				<h1>{name}</h1>
 				<div>
-					{Object.entries(values).map(([name, value], i) => {
+					{Object.entries(values)
+						.filter(([name, value]) => name in dict || React.isValidElement(value))
+						.map(([name, value], i) => {
 						const data = name in dict ? dict[name](value) : value;
 
 						return (
 							<div key={name} className="exercice-row">
-								<strong>{name}</strong> ({React.isValidElement(data) ? "React Element" : typeof data})
-							{React.isValidElement(data) ? (
-									<div className="jsx">
-										{data}
-									</div>
-								) : (
-										<Highlight className="javascript">
-											{typeof data === "object" ? JSON.stringify(data, null, 2) : data.toString()}
-										</Highlight>
-									)}
+								<strong>{name}</strong>
+								<div className="jsx">
+									{data}
+								</div>
 							</div>
 						)
 					})}

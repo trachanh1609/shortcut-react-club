@@ -5,13 +5,13 @@ This project consist of a list of exercices to train your react skills.
 
 ## How to work with this project ?
 
-1. [A] Fork and Clone or [B] Clone this repository from Github: [ArmandDu/shortcut-react-club](https://github.com/ArmandDu/shortcut-react-club)
+1. Clone this repository from Github: [ArmandDu/shortcut-react-club](https://github.com/ArmandDu/shortcut-react-club)
 
-2. Navigate to `~shortcut-react-club/projects/react-basics`
+2. Navigate to `~shortcut-react-club/projects/react-basics`.
 
-3. Copy the folder `all-exercices` to `[YOUR_USERNAME]-exercices`
+3. Create a new branch `[YOUR_USERNAME]/react-basics`. 
 
-4. Navigate to your created folder, run `npm install`.
+4. Navigate to your `all-exercices`, run `npm install`.
 
 5. run `npm test` to test your exercices. Run `npm start` to see your exercices in the browser.
 
@@ -23,23 +23,15 @@ This project consist of a list of exercices to train your react skills.
 ```bash
 #example in the terminal
 
-#[A] Fork and Clone
-git clone https://github.com/[YOUR_USERNAME]/shortcut-react-club.git
+# Clone the project
 
+git clone https://github.com/ArmandDu/shortcut-react-club.git
 cd shortcut-react-club/projects/react-basics
 
-#Link the upstream repository
-git remote add upstream https://github.com/ArmandDu/shortcut-react-club.git
+git checkout -b [YOUR_USERNAME]/react-basics
+# example: git checkout -b armanddu/react-basics
 
-# or [B] just Clone
-
-# git clone https://github.com/ArmandDu/shortcut-react-club.git
-#cd shortcut-react-club/projects/react-basics
-
-cp -r all-exercices [YOUR_USERNAME]-exercices
-# example: cp -r all-exercices armanddu-exercices
-
-cd [YOUR_USERNAME]-exercices
+cd all-exercices
 npm install
 
 #open visual studio code
@@ -53,7 +45,8 @@ npm test
 #Run the wepapp
 npm start
 
-#To run both, open a second terminal (inside vs code: "Terminal>New Terminal", then "Terminal>Split Terminal")
+#To run both, open a second terminal 
+#(inside vs code: "Terminal>New Terminal", then "Terminal>Split Terminal")
 
 ``` 
 
@@ -80,3 +73,12 @@ Select the one you are working on. Every component you write will render in this
 Whenever you save a file, the page will refresh itself.
 
 *Note*: For exercices asking you to export something by default, you will find it as the last item, under "default"
+
+
+## How to get the latest exercices ?
+
+1. make sure you are in your own branch `git branch`
+   - if not: `git checkout [YOUR_USERNAME]/react-basics`
+2. save your changes `git add . && git commit -m "message"`
+3. run `git pull origin master --rebase`
+4. You should have the latest code

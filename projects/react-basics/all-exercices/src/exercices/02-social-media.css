@@ -1,0 +1,78 @@
+#SocialMedia {
+	font-family: 'Raleway', sans-serif;
+}
+
+#SocialMedia h4{
+	padding: 0.75rem 0 0.75rem 0; 
+	margin: 0; 
+}
+
+#SocialMedia p {
+	margin: 0 0 0.5rem 0; 
+}
+.so-me.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center; 
+}
+
+.so-me.post {
+	display: flex;
+	justify-content: center;
+	border: 1px solid rgb(141, 141, 141);
+	margin: 1rem;
+	padding: 1.5rem; 
+	border-radius: 10px; 
+}
+
+.so-me.author {
+	display: flex; 
+	flex-basis: 200px;
+	width: 9em;
+	flex-direction: column; 
+}
+
+.so-me.bio {
+	font-size: 0.90rem; 
+}
+
+.so-me.profile-link {
+	color: #2980b9;
+	font-size: 0.90rem;
+	padding-top: 0.5rem; 
+}
+
+.so-me.content {
+	display: flex; 
+	flex-basis: 500px;
+	width: 30em;
+	flex-direction: column; 
+}
+
+.so-me.title{
+	padding: 0 0 1rem 0; 
+	margin: 0; 
+}
+
+.so-me.thumb {
+	color: #2980b9; 
+	float: right; 
+}
+
+.so-me.text{
+	padding-bottom: 1rem; 
+}
+
+.so-me.user-img {
+	width: 5em; 
+}
+
+.so-me.metadata {
+	align-self: end;
+	font-size: 0.80rem;
+	font-style: italic;  
+}
+
+.so-me#title {
+	text-align: center; 
+}
