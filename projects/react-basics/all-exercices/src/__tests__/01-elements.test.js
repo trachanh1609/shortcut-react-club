@@ -199,7 +199,7 @@ describe("01-4 - interpolating data part 2", () => {
 		const component = shallow(element);
 		expect(component.find("p").length).toEqual(1)
 	})
-	it(`has a p with text 'Age: ${interpolateUser.age}'`, () => {
+	it(`has a p with text 'Age: ${inject.age}'`, () => {
 		const component = shallow(element);
 		expect(component.find("p").text()).toEqual(`Age: ${inject.age}`)
 	})
