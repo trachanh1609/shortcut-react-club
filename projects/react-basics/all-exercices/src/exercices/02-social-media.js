@@ -4,39 +4,35 @@ import "exercices/02-social-media.css"
 /**
  * 02-1 - Mini Project Into Components
  *
- *  In this series of exercices, we will build a small Social Media posting platform.
- *  We will reuse what we learned from the previous exercice and add some small new things.
- * 
+ * In this series of exercices, we will build a small Social Media posting platform.
+ * We will reuse what we learned from the previous exercice and add some small new things.
+ *
  * First, export a function named "Author". This functional Component accepts a props object as parameter.
- * 
- * This functionnal component will expect to receive the following properties:
+ *
+ * This functional component will expect to receive the following properties:
  * - [String] name: the name of the author
  * - [String] picture: The URL of the author's profile picture
  * - [String] bio: a short biography
- * 
+ *
  * Your function should return a JSX div with className "so-me author"
  * Inside this div you will have 4 children:
  * - img with className "so-me user-img", img as picture prop and alt as author's name
  * - h4 with the author's name as content
  * - p with className "so-me bio" and the bio as content
  * - a with className "so-me profile-link", href "#/profile" and "View Profile" as content
- *  
- */
-
-
- 
- 
+ *
+*/
 
 /**
  * 02-2 - Using the Author component
  *
  * 
- * Now that we have our first component we are going to create a React Element form it.
+ * Now that we have our first component we are going to create a React Element from it.
  * 
  * But, first, some notes about the previous exercice:
  * 
  * If you know about constructor function and JS conventions, you should have seen some similarities with the Author function.
- * In js with a constructor function, you would have use the "new" keyword to create a new instance.
+ * In js with a constructor function, you would have used the "new" keyword to create a new instance.
  * In React, when we want to use a functional component we use JSX and we do it Like so <Author />
  * Because your components expects props, you'll need to pass them: <Author name="John Doe" bio="Lorem Ipsum" picture="htpps://..." />
  * 
@@ -67,22 +63,22 @@ export const stephenKing = {
 /**
  * 02-3 - a Post component
  *
- * export a function named "Post". Post is a functionnal Component, so it's expect a "props" argument.
- * 
+ * export a function named "Post". Post is a functional Component, so it's expecting a "props" argument.
+ *
  * You will expect the following props:
- *  - [Object] author: an object with the keys: "name", "bio" and "picture"
- *  - [String] title: the title of the Post
- *  - [String] postedOn: the date of the post
- *  - [Boolean] liked: if the post has been liked or not
- *  - [React.Children] children: the inner elements passed to the component
- * 
+ * - [Object] author: an object with the keys: "name", "bio" and "picture"
+ * - [String] title: the title of the Post
+ * - [String] postedOn: the date of the post
+ * - [Boolean] liked: if the post has been liked or not
+ * - [React.Children] children: the inner elements passed to the component.
+ *
  * Your function will return a div with className "so-me post".
  * The div will contain the following children:
  *  - Author: your Author component from exercice 1 with the props from the props.author object
  *  - div with className "so-me content" and following children:
  *    - h3 with className "so-me title" and the following children:
  *      - the title of the post
- *      - a (<a>) with href "#/ike", className "so-me thumb" and a i (<i>) as children with className:
+ *      - a (<a>) with href "#/like", className "so-me thumb" and a i (<i>) as children with className:
  *        - "fas fa-thumbs-up" if the props.liked is true
  *        - "far fa-thumbs-up" if the props.liked is false
  *    - div with className "so-me text" and as content your props.children
@@ -91,19 +87,15 @@ export const stephenKing = {
  * 
  * Help with the <i> element:
  *  With {} you can interpolate most Javascript expressions.
- *  You can't evaluata a if else statement but you can evaluate a ternary operator
- *  liked ? <truthy statement> : <falsy statement>. I'll let you google "Javascript Ternary Operator"
+ *  You can't evaluate an if else statement but you can evaluate a ternary operator
+ *  like "? <truthy statement> : <falsy statement>". I'll let you google "Javascript Ternary Operator"
  * 
  * Help with the props.children:
  *  Props are the parameters you pass to your component. When doing something like <MyButton>Click Me</MyButton>,
- *  the text "Click Me" is the inner element of MyButton, it's thent a parameter of MyButton, then it's a props of MyButton.
+ *  the text "Click Me" is the inner element of MyButton, it's then a parameter of MyButton, then it's a props of MyButton.
  *  In React, any inner attribute will be stored into your props as "children". It's up to you to pass it down or skip it.
  *  Check the react documentation about children for more details.
  */
-
-
-
-
 
 /**
  * 02-4 - Using your Post component
@@ -122,7 +114,7 @@ export const stephenKing = {
  * Source: https://twitter.com/StephenKing/status/1045064042816180224
  */
 
- 
+
 
 
 
@@ -131,7 +123,7 @@ export const stephenKing = {
  * 
  * Now that we can create new posts, we are going to create a SocialMedia App !
  * 
- * export a function named "SocialMedia", it expect the following props:
+ * export a function named "SocialMedia", it expects the following props:
  *  - [String] title: the name of your SocialMedia app!
  *  - [Array] posts: a list of posts with id, title, author, date, content and liked
  * 
@@ -155,7 +147,7 @@ export const stephenKing = {
 /**
  * 02-6 Using your SocialMedia component
  * 
- * Last exercice, export a variabled named "newsFeed" and assign it your SocialMedia element.
+ * Last exercice, export a variable named "newsFeed" and assign it your SocialMedia element.
  * 
  * It will expect the following props:
  *  - title: "New's Feed"

@@ -207,7 +207,7 @@ describe("02-3 - a Post component", () => {
 		{ author: ex.stephenKing, title: "Lorem Ipsum", postedOn: "21/12/12", children: "This is the end of the world, as we now it!" },
 	];
 
-	const element = Component ? <Component /> : null;
+	const element = Component ? <Component author={{}}/> : null;
 
 	itHasProperty(ex, "Post");
 
@@ -339,11 +339,11 @@ describe("02-3 - a Post component", () => {
 			expect(Component).toBeTruthy()
 		})
 		it(`it has className "fas fa-thumbs-up" when the props.liked is true`, () => {
-			const component = shallow(Component ? <Component liked /> : null);
+			const component = shallow(Component ? <Component author={{}} liked /> : null);
 			expect(component.find(".so-me.thumb i").prop("className")).toEqual("fas fa-thumbs-up")
 		})
 		it(`it has className "far fa-thumbs-up" when the props.liked is false`, () => {
-			const component = shallow(Component ? <Component liked={false} /> : null);
+			const component = shallow(Component ? <Component author={{}} liked={false} /> : null);
 			expect(component.find(".so-me.thumb i").prop("className")).toEqual("far fa-thumbs-up")
 		})
 	})

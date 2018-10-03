@@ -88,25 +88,25 @@ describe("01-2 - nested JSX", () => {
 		expect(component.prop("className")).toEqual("card")
 	})
 
-	it("is contains two elements", () => {
+	it("contains two elements", () => {
 		const component = shallow(element);
 		expect(component.children().length).toEqual(2)
 	})
 
-	it("is has a h4", () => {
+	it("has a h4", () => {
 		const component = shallow(element);
 		expect(component.find("h4").length).toEqual(1)
 	})
-	it("is has a h4 with text 'John Doe'", () => {
+	it("has a h4 with text 'John Doe'", () => {
 		const component = shallow(element);
 		expect(component.find("h4").text()).toEqual("John Doe")
 	})
 
-	it("is has a p", () => {
+	it("has a p", () => {
 		const component = shallow(element);
 		expect(component.find("p").length).toEqual(1)
 	})
-	it("is has a p with text 'Age: 42'", () => {
+	it("has a p with text 'Age: 42'", () => {
 		const component = shallow(element);
 		expect(component.find("p").text()).toEqual("Age: 42")
 	})
@@ -181,25 +181,25 @@ describe("01-4 - interpolating data part 2", () => {
 		expect(component.prop("className")).toEqual("card")
 	})
 
-	it("is contains two elements", () => {
+	it("contains two elements", () => {
 		const component = shallow(element);
 		expect(component.children().length).toEqual(2)
 	})
 
-	it("is has a h4", () => {
+	it("has a h4", () => {
 		const component = shallow(element);
 		expect(component.find("h4").length).toEqual(1)
 	})
-	it("is has a h4 with text from 'interpolateUser.name'", () => {
+	it("has a h4 with text from 'interpolateUser.name'", () => {
 		const component = shallow(element);
 		expect(component.find("h4").text()).toEqual(inject.name)
 	})
 
-	it("is has a p", () => {
+	it("has a p", () => {
 		const component = shallow(element);
 		expect(component.find("p").length).toEqual(1)
 	})
-	it("is has a p with text 'Age: ${interpolateUser.age}'", () => {
+	it(`has a p with text 'Age: ${interpolateUser.age}'`, () => {
 		const component = shallow(element);
 		expect(component.find("p").text()).toEqual(`Age: ${inject.age}`)
 	})
@@ -258,12 +258,12 @@ describe("01-5 - interpolating data part 3", () => {
 			expect(component.find("li").at(index).find("p").length).toEqual(1)
 		})
 
-		it(`has a price 'Flavor: ${flavor}'`, () => {
+		it(`has a h4 with text 'Flavor: ${flavor}'`, () => {
 			const component = shallow(element);
 			expect(component.find("li").at(index).find("h4").text()).toEqual(`Flavor: ${flavor}`)
 		})
 		
-		it(`has a price 'Price: ${cost}€'`, () => {
+		it(`has a p with text 'Price: ${cost}€'`, () => {
 			const component = shallow(element);
 			expect(component.find("li").at(index).find("p").text()).toEqual(`Price: ${cost}€`)
 		})
@@ -317,7 +317,11 @@ describe("01-5 - interpolating data part 3", () => {
 	 describe("return value", () => {
 		 const name ="Person.Name";
 		 const age = 123;
-		 const element = factory(name, age)
+		 let element;
+
+		 beforeEach(() => {
+			 element = factory(name, age);
+		 })
 
 		 it("is wrapped inside a div element", () => {
 			 const component = shallow(element);
@@ -329,25 +333,25 @@ describe("01-5 - interpolating data part 3", () => {
 			 expect(component.prop("className")).toEqual("card")
 		 })
 
-		 it("is contains two elements", () => {
+		 it("contains two elements", () => {
 			 const component = shallow(element);
 			 expect(component.children().length).toEqual(2)
 		 })
 
-		 it("is has a h4", () => {
+		 it("has a h4", () => {
 			 const component = shallow(element);
 			 expect(component.find("h4").length).toEqual(1)
 		 })
-		 it("is has a h4 with correct text", () => {
+		 it("has a h4 with correct text", () => {
 			 const component = shallow(element);
 			 expect(component.find("h4").text()).toEqual(name)
 		 })
 
-		 it("is has a p", () => {
+		 it("has a p", () => {
 			 const component = shallow(element);
 			 expect(component.find("p").length).toEqual(1)
 		 })
-		 it("is has a p with correct text 'Age: ${age}'", () => {
+		 it(`has a p with correct text 'Age: ${age}'`, () => {
 			 const component = shallow(element);
 			 expect(component.find("p").text()).toEqual(`Age: ${age}`)
 		 })
@@ -391,25 +395,25 @@ describe("01-8 - interpolating dynamic data part 2", () => {
 			expect(component.prop("className")).toEqual("card")
 		})
 
-		it("is contains two elements", () => {
+		it("contains two elements", () => {
 			const component = shallow(element);
 			expect(component.children().length).toEqual(2)
 		})
 
-		it("is has a h4", () => {
+		it("has a h4", () => {
 			const component = shallow(element);
 			expect(component.find("h4").length).toEqual(1)
 		})
-		it("is has a h4 with correct text", () => {
+		it("has a h4 with correct text", () => {
 			const component = shallow(element);
 			expect(component.find("h4").text()).toEqual(name)
 		})
 
-		it("is has a p", () => {
+		it("has a p", () => {
 			const component = shallow(element);
 			expect(component.find("p").length).toEqual(1)
 		})
-		it("is has a p with correct text 'Age: ${age}'", () => {
+		it(`has a p with correct text 'Age: ${age}'`, () => {
 			const component = shallow(element);
 			expect(component.find("p").text()).toEqual(`Age: ${age}`)
 		})
