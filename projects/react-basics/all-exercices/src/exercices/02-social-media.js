@@ -64,8 +64,6 @@ export const stephenKing = {
 	bio: "Stephen Edwin King is an American author of horror, supernatural fiction,..."
 }
 
-
-
 /**
  * 02-3 - a Post component
  *
