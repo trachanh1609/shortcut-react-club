@@ -13,7 +13,7 @@ export class Grid extends Component {
 						key={index}
 						content={content}
 						currentPlayer={currentPlayer}
-						onClick={() => onBoxClick(index)}
+						onClick={function () { onBoxClick(index) }}
 					/>
 				))}
 			</div>

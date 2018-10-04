@@ -14,9 +14,9 @@ export class Game extends Component {
 
     static getNewGameState = () => {
         return {
-            boxes: Array(9).fill(null),
-            currentPlayer: "X",
-            winner: null,
+            boxes: Array(9).fill(null), //null, 'X', 'O'
+            currentPlayer: "X", // 'X', 'O'
+            winner: null, //null, 'X', 'O'
         }
 	}
 	
@@ -63,7 +63,7 @@ export class Game extends Component {
 			const { boxes, currentPlayer } = prevState;
 
 			if (index < 0 || index >= boxes.length || boxes[index] !== null) {
-				return  {}
+				return {}
 			}
 
 			return {
@@ -71,14 +71,13 @@ export class Game extends Component {
 				currentPlayer: currentPlayer === "X" ? "O" : "X"
 			}
 		}
-
         this.setState(stateUpdater, this.checkWinner);
 	}
 
     render() {
         const { boxes, currentPlayer, winner } = this.state;
-        const isTie = boxes.every(b => b !== null);
-
+		const isTie = boxes.every(b => b !== null);
+		
         return (
             <div className="game">
 

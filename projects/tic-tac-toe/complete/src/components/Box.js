@@ -7,13 +7,13 @@ export class Box extends Component {
 		const { currentPlayer, content, onClick } = this.props;
 		const className = classnames("box-content", { 
 			"player-1": content === "X",
-			"player-2": content ==="O"
+			"player-2": content === "O"
 		})
 
 		return (
 			<div className={`box`} onClick={onClick}>
 				<div className={className}>
-					{content === "X" && <i className="fas fa-times" />}
+					{content === "X" ? <i className="fas fa-times" /> : null }
 					{content === "O" && <i className="far fa-circle" />}
 				</div>
 				<div className="box-preview">
