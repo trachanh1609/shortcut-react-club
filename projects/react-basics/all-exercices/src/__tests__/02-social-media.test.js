@@ -575,7 +575,7 @@ describe("02-5 SocialMedia component", () => {
  * 
  */
 
-describe("02-5 SocialMedia component", () => {
+describe("02-6 Using your SocialMedia component", () => {
 
 	const props = [ { title: "News Feed", posts: ex.newsPosts } ]
 
