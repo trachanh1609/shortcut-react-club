@@ -29,19 +29,19 @@ import "exercices/02-social-media.css"
  * 
  * Now that we have our first component we are going to create a React Element from it.
  * 
- * But, first, some notes about the previous exercice:
+ * But first, some notes about the previous exercice:
  * 
  * If you know about constructor function and JS conventions, you should have seen some similarities with the Author function.
- * In js with a constructor function, you would have used the "new" keyword to create a new instance.
- * In React, when we want to use a functional component we use JSX and we do it Like so <Author />
- * Because your components expects props, you'll need to pass them: <Author name="John Doe" bio="Lorem Ipsum" picture="htpps://..." />
+ * In js, with a constructor function, you would have used the "new" keyword to create a new instance.
+ * In React, when we want to use a functional component, we use JSX and we do it Like so: <Author />
+ * Because your components expect props, you'll need to pass them: <Author name="John Doe" bio="Lorem Ipsum" picture="htpps://..." />
  * 
  * Now that you know everything, export a variable named "stephenKingCard" and assign it an instance of an Author using the JSX syntax.
- * You will use the data from "stephenKing" object as prop values (use interpolation)
+ * You will use the data from "stephenKing" object as prop values (use interpolation).
  * 
  * Conventions:
  *  If you want to improve readibility, sometimes you want to display one prop per line (expecially when there is more than 3 props)
- * To do so there is the template
+ * To do so, here is the template:
  * 
  * const element = (
  * 	<MyComponent
@@ -88,11 +88,11 @@ export const stephenKing = {
  * Help with the <i> element:
  *  With {} you can interpolate most Javascript expressions.
  *  You can't evaluate an if else statement but you can evaluate a ternary operator
- *  like "? <truthy statement> : <falsy statement>". I'll let you google "Javascript Ternary Operator"
+ *  "like ? <truthy statement> : <falsy statement>". I'll let you google "Javascript Ternary Operator"
  * 
  * Help with the props.children:
  *  Props are the parameters you pass to your component. When doing something like <MyButton>Click Me</MyButton>,
- *  the text "Click Me" is the inner element of MyButton, it's then a parameter of MyButton, then it's a props of MyButton.
+ *  the text "Click Me" is the inner element of MyButton, which makes it a parameter of MyButton, therefore a props of MyButton.
  *  In React, any inner attribute will be stored into your props as "children". It's up to you to pass it down or skip it.
  *  Check the react documentation about children for more details.
  */
@@ -123,7 +123,7 @@ export const stephenKing = {
  * 
  * Now that we can create new posts, we are going to create a SocialMedia App !
  * 
- * export a function named "SocialMedia", it expects the following props:
+ * export a function named "SocialMedia". It expects the following props:
  *  - [String] title: the name of your SocialMedia app!
  *  - [Array] posts: a list of posts with id, title, author, date, content and liked
  * 
@@ -150,7 +150,7 @@ export const stephenKing = {
  * Last exercice, export a variable named "newsFeed" and assign it your SocialMedia element.
  * 
  * It will expect the following props:
- *  - title: "New's Feed"
+ *  - title: "News Feed"
  *  - posts: the newsPost array
  * 
  */
