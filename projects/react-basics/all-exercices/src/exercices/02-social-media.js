@@ -137,7 +137,7 @@ export const stephenKing = {
  *      - title with the post.title property
  *      - postedOn with the post.date property
  *      - liked with the post.liked property
- *      - children: the post.content property wrapped inside a p element
+ *      - children: the post.content property
  * 
  */
 

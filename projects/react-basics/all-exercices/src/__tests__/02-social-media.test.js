@@ -41,7 +41,7 @@ describe("02-1 - Mini Project Into Components", () => {
 		expect(React.isValidElement(element)).toEqual(true)
 	})
 
-	it("is returns a div element", () => {
+	it("returns a div element", () => {
 		const component = shallow(element);
 		expect(component.type()).toEqual("div")
 	})
@@ -215,7 +215,7 @@ describe("02-3 - a Post component", () => {
 		expect(React.isValidElement(element)).toEqual(true)
 	})
 
-	it("is returns a div element", () => {
+	it("returns a div element", () => {
 		const component = shallow(element);
 		expect(component.type()).toEqual("div")
 	})
@@ -482,7 +482,7 @@ describe("02-5 SocialMedia component", () => {
 		{ title: "News Feed", posts: ex.newsPosts }
 	]
 
-	const element = Component ? <Component {...props} /> : null;
+	const element = Component ? <Component posts={[]} title="" /> : null;
 
 	itHasProperty(ex, "SocialMedia");
 
@@ -490,7 +490,7 @@ describe("02-5 SocialMedia component", () => {
 		expect(React.isValidElement(element)).toEqual(true)
 	})
 
-	it("is returns a div element", () => {
+	it("returns a div element", () => {
 		const component = shallow(element);
 		expect(component.type()).toEqual("div")
 	})
