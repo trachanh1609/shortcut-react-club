@@ -14,7 +14,7 @@ import React from "react"
  */
 
  //Your answer here
- export const helloWorld = <h3>Hello Wolrd!</h3> ;
+ export const helloWorld = <h1>Hello World!</h1> ;
  /**
  * 01-2 - nested JSX
  *  

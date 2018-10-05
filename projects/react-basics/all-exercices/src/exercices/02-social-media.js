@@ -23,6 +23,19 @@ import "exercices/02-social-media.css"
  *
 */
 
+export function Author(props) {
+	const {name, picture, bio} = props ;
+	return (
+		<div className="so-me author">
+			<img className="so-me user-img" src={picture} alt={name}/>
+			<h4>{name}</h4>
+			<p className="so-me bio">{bio}</p>
+			<a className="so-me profile-link" href="#/profile">View Profile</a>
+
+		</div>
+	)
+}
+
 /**
  * 02-2 - Using the Author component
  *
@@ -60,6 +73,12 @@ export const stephenKing = {
 	bio: "Stephen Edwin King is an American author of horror, supernatural fiction,..."
 }
 
+export const stephenKingCard = (
+	<Author 
+		name={stephenKing.name}
+		picture={stephenKing.picture}
+		bio={stephenKing.bio}
+	/>)
 /**
  * 02-3 - a Post component
  *
@@ -97,6 +116,30 @@ export const stephenKing = {
  *  Check the react documentation about children for more details.
  */
 
+ export const Post= (props) => {
+	const {author, title, postedOn, liked, children} = props;
+
+	return (
+		<div className="so-me post">
+			<Author name={author.name} picture={author.picture} bio={author.bio}></Author>
+			<div className="so-me content">
+				<h3 className="so-me title">
+					{title}
+					<a className="so-me thumb" href="#/like">
+						{liked ? <i className="fas fa-thumbs-up"></i> : <i className="far fa-thumbs-up"></i>}
+					</a>
+				</h3>
+				<div className="so-me text">
+					{children}
+				</div>
+				<p className="so-me metadata">
+					Posted on {postedOn}
+				</p>
+			</div>
+		</div>
+	)
+ }
+
 /**
  * 02-4 - Using your Post component
  *
@@ -114,7 +157,9 @@ export const stephenKing = {
  * Source: https://twitter.com/StephenKing/status/1045064042816180224
  */
 
-
+export const stephenKingPost = (<Post title="Trump's Conference" postedOn="26/09/18" author={stephenKing}>
+	Trump’s news conference is like listening to a nut calling in to a radio sports talk show.
+</Post> )
 
 
 
@@ -141,7 +186,17 @@ export const stephenKing = {
  * 
  */
 
-
+export function SocialMedia(props) {
+	const {title, posts} = props;
+	return (
+		<div id="SocialMedia">
+			<h1 id="title">{title}</h1>
+			<div className="so-me container">
+				{posts.map(post=><Post key={post.id} author={post.author} title={post.title} postedOn={post.date} liked={post.liked}>{post.content}</Post>)}
+			</div>
+		</div>
+	)
+}
 
 
 /**
@@ -177,6 +232,8 @@ export const newsPosts = [
 	}
 ]
 
+
+export const newsFeed = <SocialMedia title="News Feed" posts={newsPosts} />
 
 /**
  * Congratulations!
