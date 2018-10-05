@@ -14,7 +14,7 @@ import React from "react"
  */
 
  //Your answer here
-
+ export const helloWorld = <h3>Hello Wolrd!</h3> ;
  /**
  * 01-2 - nested JSX
  *  
@@ -43,6 +43,12 @@ import React from "react"
  * 
  */
 
+ export const nestedJSX = (
+     <div className="card">
+        <h4>John Doe</h4>
+        <p>Age: 42</p>
+     </div>
+ )
  
 
 
@@ -62,6 +68,11 @@ import React from "react"
 
 export const interpolateText = "I am a JS string"
 
+export const interpolatingPart1 = (
+    <div>
+        {interpolateText}
+    </div>
+)
 
 
 /**
@@ -79,7 +90,12 @@ export const interpolateText = "I am a JS string"
 
 export const interpolateUser = {name: "Jeanne", age: 30}; 
 
-
+export const interpolatingPart2 = (
+    <div className="card">
+        <h4>{interpolateUser.name}</h4>
+        <p>Age: {interpolateUser.age}</p>
+    </div>
+)
 
 
  /**
@@ -102,6 +118,18 @@ export const interpolateUser = {name: "Jeanne", age: 30};
  */
 export const interpolateArray = [{flavor: "chocolate", cost: 2}, {flavor: "vanilla", cost: 1.5}, {flavor: "papaya", cost: 3}];
 
+export const interpolatingPart3 = (
+    <ul>
+        {interpolateArray.map(row => {
+            return (
+                <li key={row.flavor}>
+                    <h4>{`Flavor: ${row.flavor}`}</h4>
+                    <p>{`Price: ${row.cost}€`}</p>
+                </li>
+            )
+        })}
+    </ul>
+)
 
 
 
@@ -131,7 +159,14 @@ export const interpolateArray = [{flavor: "chocolate", cost: 2}, {flavor: "vanil
  * It should return the same JSX element as exercice 2 and 4 but uses the parameter of the function as data source.
  */
 
-
+export function elementFactory(name, age){
+    return (
+        <div className="card">
+            <h4>{name}</h4>
+            <p>Age: {age}</p>
+        </div>
+    )
+}
  
 
   /**
@@ -147,7 +182,16 @@ export const interpolateArray = [{flavor: "chocolate", cost: 2}, {flavor: "vanil
  * Your function will return the same JSX as exercie 7 but you will have to extract the data from the props this time.
  */
 
+export function UserCardComponent(props){
+    const {name, age } = props ;
 
+    return (
+        <div className="card">
+            <h4>{name}</h4>
+            <p>Age: {age}</p>
+        </div>
+    )
+}
 
 
 
