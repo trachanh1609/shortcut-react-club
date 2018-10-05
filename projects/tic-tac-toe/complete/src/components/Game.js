@@ -76,7 +76,7 @@ export class Game extends Component {
 
     render() {
         const { boxes, currentPlayer, winner } = this.state;
-		const isTie = boxes.every(b => b !== null);
+		const isTie = !winner && boxes.every(b => b !== null);
 		
         return (
             <div className="game">
