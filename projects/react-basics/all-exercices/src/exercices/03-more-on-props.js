@@ -4,23 +4,23 @@ import PropTypes from "prop-types";
 /**
  * 03-1 - A crashable component
  *
- * In this series of exercice, we are going to dive into some more advanced features with props.
- * To show you in context, let's start already
+ * In this series of exercices, we are going to dive into some more advanced features with props.
+ * To show you in context, let's start already.
  *
- * export a funcional component named "CrashableTodoList", this component will accept a prop named "todos".
- * A todo object is an object with string "id" and string "task"
+ * export a funcional component named "CrashableTodoList". This component will accept a prop named "todos".
+ * A todo object is an object with a string "id" and a string "task"
  *
- * It will return an ul and as content an array of li elements.
- * Each li must have a key with value "todo.id" and content the todo.task string
+ * It will return a ul and, as content, an array of li elements.
+ * Each li must have a key with the value "todo.id", and the content should be the todo.task string
  *
  */
 
 /**
  * 03-2 - Use crashable component
  *
- * Let see what happens, when you use your component and you forget to pass the "todos" list.
+ * Let see what happens when you use your component and you forget to pass the "todos" list.
  *
- * First, export a variable named "weakTodoList". assign it an instance of CrashableTodoList but don't pass it any props.
+ * First, export a variable named "weakTodoList". Assign it an instance of CrashableTodoList but don't pass any props to it.
  *
  * Run npm start and see what happens in your browser. You should get an error.
  * Before going to the next exercice, just pass an empty array as the todos prop.
@@ -32,10 +32,10 @@ import PropTypes from "prop-types";
  *
  * Read about default parameters in javascript: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters
  *
- * export a functional component named "DefaultParametersTodoList", this function will expect props as a parameter.
+ * export a functional component named "DefaultParametersTodoList". This function will expect props as a parameter.
  * You'll assign the following default value to the props: "{ todos: [] }"
  *
- * this component should return the same content as exercice 1
+ * This component should return the same content as exercice 1
  *
  */
 
@@ -45,8 +45,8 @@ import PropTypes from "prop-types";
  * export a variable named "jsWayTodoList" and  use your DefaultParametersTodoList component. Don't pass any props yet.
  *
  * Check your browser. Your app will still crash.
- * The reason is that react will always pass a prop object to your function.
- * If you don't pass props, you will receive an empty object ({}) and default parameters won't apply.
+ * The reason is that React will always pass a prop object to your function.
+ * If you don't pass props, you will receive an empty object ({}), and default parameters won't apply.
  *
  * If you want to use this solution with React components, you need to also use destructuring assignments.
  * Read: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
@@ -67,11 +67,11 @@ import PropTypes from "prop-types";
 /**
  * 03-5 - The React way
  *
- * The previous way work but React has another (better way) to set default Props.
+ * The previous way works, but React has another (better)  way of setting default Props.
  * The current solution adds hard to read code into your components and you can't extract the default props.
- * (Later you'll see about advanced component composition and You'll need to have access to the default props)
+ * (Later you'll see about advanced component composition and you'll need to have access to the default props)
  *
- * Let's not keep the suspens, React way do define default props is to attach a "defaultProps" attribute to your component.
+ * Let's not keep the suspense. The React way to define default props is to attach a "defaultProps" attribute to your component.
  *
  * Here is the template (from React Docs):
  *
@@ -103,7 +103,7 @@ import PropTypes from "prop-types";
 /**
  * 03-7 - Testing your last component again
  *
- * export a variable named "bestTodoListWithProps" and use your previous component. pass the "todos" array as a prop.
+ * export a variable named "bestTodoListWithProps" and use your previous component. Pass the "todos" array as a prop.
  * React uses your props!
  */
 
@@ -127,18 +127,18 @@ export const todos = [
  *
  * prop-types are already included in this project, we are going to focus on using it.
  *
- * attach a propTypes attribute to your "BestTodoList" component and type check your props.
- * You should only accept a prop "todos" with is an required array of object with shape {id: string, task: string}
+ * Attach a propTypes attribute to your "BestTodoList" component and type check your props.
+ * You should only accept a prop "todos" wich is a required array of objects with the following shape: {id: string, task: string}
  *
  * Read the documentation to learn how to do that!
  *
  */
 
 /**
- * Congrat's! now you should better understand props and React Prop api!
+ * Congrats! Now you should better understand props and React Prop api!
  *
  * Just some gotchas:
  * prop-types only check and warn you if you are giving the wrong prop, it won't prevent your app from crashing.
- * but the warnings and documentation that come with it actually help when you are building larger applications.
+ * But the warnings and documentation that come with it actually help when you are building larger applications.
  *
  */
