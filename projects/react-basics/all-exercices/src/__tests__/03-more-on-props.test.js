@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { shallow } from "enzyme";
 import each from "jest-each";
+import sinon from "sinon";
 import { itHasProperty, itHasValue, itHasType } from "lib/testUtils";
 
 import * as ex from "exercices/03-more-on-props";
@@ -381,5 +382,67 @@ describe("03-8 - prop type checking", () => {
   });
   it("has key todos", () => {
     expect(Component.propTypes).toHaveProperty("todos");
+  });
+
+  let stub;
+  beforeEach(() => {
+    stub = sinon.stub(console, "error");
+  });
+  afterEach(() => {
+    console.error.restore();
+  });
+
+  it("fails if todos is not an array", () => {
+    expect(() => shallow(<Component todos={"string"} />)).toThrow();
+    expect(stub.calledOnce).toEqual(true);
+    expect(
+      stub.calledWithMatch(
+        "Warning: Failed prop type: Invalid prop `todos` of type `string` supplied to `BestTodoList`, expected an array."
+      )
+    ).toEqual(true);
+  });
+  it("fails if todos is not an array of object", () => {
+    expect(() => shallow(<Component todos={["string"]} />)).not.toThrow();
+    expect(stub.called).toEqual(true);
+
+    expect(stub.args[0][0]).toMatch(
+      "Warning: Failed prop type: Invalid prop `todos[0]` of type `string` supplied to `BestTodoList`, expected `object`."
+    );
+  });
+  it("fails if todos is not an array of object with key 'id'", () => {
+    expect(() => shallow(<Component todos={[{}]} />)).not.toThrow();
+    expect(stub.called).toEqual(true);
+
+    expect(stub.args[0][0]).toMatch(
+      "Warning: Failed prop type: The prop `todos[0].id` is marked as required in `BestTodoList`, but its value is `undefined`."
+    );
+  });
+
+  it("fails if todos is not an array of object with 'id' of type string", () => {
+    expect(() => shallow(<Component todos={[{ id: 1 }]} />)).not.toThrow();
+    expect(stub.called).toEqual(true);
+
+    expect(stub.args[0][0]).toMatch(
+      "Warning: Failed prop type: Invalid prop `todos[0].id` of type `number` supplied to `BestTodoList`, expected `string`."
+    );
+  });
+  it("fails if todos is not an array of object with key 'task'", () => {
+    expect(() => shallow(<Component todos={[{ id: "1" }]} />)).not.toThrow();
+    expect(stub.called).toEqual(true);
+
+    expect(stub.args[0][0]).toMatch(
+      "Warning: Failed prop type: The prop `todos[0].task` is marked as required in `BestTodoList`, but its value is `undefined`."
+    );
+  });
+
+  it("fails if todos is not an array of object with 'task' of type string", () => {
+    expect(() =>
+      shallow(<Component todos={[{ id: "1", task: 1 }]} />)
+    ).not.toThrow();
+    expect(stub.called).toEqual(true);
+
+    expect(stub.args[0][0]).toMatch(
+      "Warning: Failed prop type: Invalid prop `todos[0].task` of type `number`supplied to `BestTodoList`, expected `string`."
+    );
   });
 });
