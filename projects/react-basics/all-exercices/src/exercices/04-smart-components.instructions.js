@@ -29,7 +29,7 @@
  *
  * Export a class component named "SmartCounter" that extends Component.
  *
- * Inside your render method, return a div. That div contains a button with text "click me" and a p (empty for now)
+ * Inside your render method, return a div. That div contains a button with text "Click me" and a p (empty for now)
  *
  *
  *
