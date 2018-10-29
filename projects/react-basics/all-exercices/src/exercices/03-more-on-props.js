@@ -14,6 +14,13 @@ import PropTypes from "prop-types";
  * Each li must have a key with the value "todo.id", and the content should be the todo.task string
  *
  */
+export const CrashableTodoList = (props) => {
+  return (
+    <ul>
+      {props.todos.map(todo=> <li key={todo.id}>{todo.task}</li>)}
+    </ul>
+  )
+}
 
 /**
  * 03-2 - Use crashable component
@@ -26,6 +33,7 @@ import PropTypes from "prop-types";
  * Before going to the next exercice, just pass an empty array as the todos prop.
  *
  */
+export const weakTodoList = <CrashableTodoList todos={[]}></CrashableTodoList>
 
 /**
  * 03-3 - A javascript Solution
@@ -38,6 +46,14 @@ import PropTypes from "prop-types";
  * This component should return the same content as exercice 1
  *
  */
+export const DefaultParametersTodoList = (props)=>{
+  const {todos=[]} = props;
+  return (
+    <ul>
+      {todos.map(todo=> <li key={todo.id}>{todo.task}</li>)}
+    </ul>
+  )
+}
 
 /**
  * 03-4 - Testing your javascript Solution
@@ -63,6 +79,8 @@ import PropTypes from "prop-types";
  * And instead of doing "props.todos.map()", just do "todos.map()".
  * Now your app should work (and the tests should pass)
  */
+
+ export const jsWayTodoList = <DefaultParametersTodoList></DefaultParametersTodoList>
 
 /**
  * 03-5 - The React way
@@ -91,6 +109,25 @@ import PropTypes from "prop-types";
  * attach the defaultProps property with a "todos" prop that should be an empty array.
  *
  */
+// export const BestTodoList = (props)=>{
+//   return (
+//     <ul>
+//       {props.todos.map(todo=> <li key={todo.id}>{todo.task}</li>)}
+//     </ul>
+//   )
+// }
+
+export function BestTodoList (props){
+  return (
+    <ul>
+      {props.todos.map(todo=> <li key={todo.id}>{todo.task}</li>)}
+    </ul>
+  )
+}
+
+BestTodoList.defaultProps = {
+  todos: [],
+}
 
 /**
  * 03-6 - Testing your last component
@@ -99,6 +136,7 @@ import PropTypes from "prop-types";
  * Your component should now render without crashing!
  *
  */
+export const bestTodoList = <BestTodoList></BestTodoList>
 
 /**
  * 03-7 - Testing your last component again
@@ -112,6 +150,8 @@ export const todos = [
   { id: "2", task: "learn props" },
   { id: "3", task: "learn defaultProps" }
 ];
+
+export const bestTodoListWithProps = <BestTodoList todos={todos}></BestTodoList>
 
 /**
  * 03-8 - prop type checking
@@ -133,7 +173,21 @@ export const todos = [
  * Read the documentation to learn how to do that!
  *
  */
+// BestTodoList.propTypes = {
+//   todos: PropTypes.arrayOf({
+//       id: PropTypes.string,
+//       task: PropTypes.string,
+//   }).isRequired ,  
+// }
 
+BestTodoList.propTypes = {
+  todos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      task: PropTypes.string.isRequired,
+    })
+  )  ,
+}
 /**
  * Congrats! Now you should better understand props and React Prop api!
  *
