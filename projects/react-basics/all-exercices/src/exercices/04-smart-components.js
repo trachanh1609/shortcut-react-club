@@ -72,6 +72,27 @@ export const badCounter2 = <BadCounter2 />;
  *  Write your solution in this file, below!
  */
 
+export class SmartCounter extends Component {
+    constructor(props){
+        super(props);
+        this.state = { count : 0};
+    }
+
+    handleClick = () =>{
+        this.setState({count: this.state.count + 1});
+    }
+
+    render() {
+        return (
+            <div>
+                <button onClick={this.handleClick}>Click me</button>
+                <p>{this.state.count}</p>
+            </div>
+        )
+    }
+}
+
+export const myCounter = <SmartCounter></SmartCounter>
 /**
  * 04-6 Conclusion(ish)
  *
@@ -96,3 +117,5 @@ export const badCounter2 = <BadCounter2 />;
  * Another part is that React will only update the DOM if the props or the state changed,
  * and because you'll never mutate (change) either of them yourself (always use setState), React will be able to perfom it's task efficiently!
  */
+
+ export const mySecondCounter = <SmartCounter></SmartCounter>
