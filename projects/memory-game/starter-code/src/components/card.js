@@ -1,13 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
+import {RANKS} from '../GlobalVariables';
 
 const Card = (props) => {
-    const type = "diamonds";
-    const array = {};
-    array[type] = true;
-    array.hidden = false;
+    const { rank, suit, hidden} = props;
+    
     return (
-        <div className={classNames("card", array)}> <p>K</p> </div>
+        <div className={classNames("card", suit, {hidden: hidden})}> <p>{ RANKS[rank] }</p> </div>
     )
 }
 
