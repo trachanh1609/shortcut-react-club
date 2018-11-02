@@ -11,6 +11,7 @@ class StarterCode extends React.Component {
 
 	state = {
 		hands : [],
+		clicked: [],
 	}
 
 	componentDidMount = () => {
@@ -18,12 +19,12 @@ class StarterCode extends React.Component {
 	}
 
 	initHands = ()=>{
-		const noOfCards = 4
-		const randomRankArray = this.getRandomRankArray(noOfCards);
-		const randomSuitArray = this.getRandomSuitArray(noOfCards);
+		const pairs = 4
+		const randomRankArray = this.getRandomRankArray(pairs);
+		const randomSuitArray = this.getRandomSuitArray(pairs);
 		const hands = [];
 
-		for(let i=0; i < noOfCards; i++){
+		for(let i=0; i < pairs; i++){
 			const card = {
 				rank: randomRankArray[i],
 				suit: randomSuitArray[i],
@@ -35,16 +36,16 @@ class StarterCode extends React.Component {
 			hands.push(secondCard);
 		}
 
-		// console.log("hands", hands);
+		console.log("hands", hands);
 		this.setState({hands: this.shuffle(hands)})
 	}
 
-	getRandomSuitArray = (noOfCards) => {
+	getRandomSuitArray = (pairs) => {
 		const randomSuitArray = [];
 		const noOfSuits = 4 ;
 		const SUITS = ['hearts', 'diamonds', 'clubs', 'spades'];
 
-		for(let i = 0; i < noOfCards; i++) {
+		for(let i = 0; i < pairs; i++) {
 			const randomIndex = Math.floor(Math.random()*noOfSuits);
 			randomSuitArray.push(SUITS[randomIndex]);
 		}
@@ -52,13 +53,13 @@ class StarterCode extends React.Component {
 		return randomSuitArray;
 	}
 
-	getRandomRankArray = (noOfCards) => {
+	getRandomRankArray = (pairs) => {
 		const randomRankArray = [];
 		const noOfRanks = 13;
 		const RANKS = Array.from(Array(noOfRanks).keys()); ;
 		let noOfRankLeft;
 
-		for(let i=0; i < noOfCards; i++ ){
+		for(let i=0; i < pairs; i++ ){
 			noOfRankLeft = noOfRanks - i ;
 			const randomIndex = Math.floor(Math.random()*noOfRankLeft) ;
 
@@ -91,6 +92,28 @@ class StarterCode extends React.Component {
 		return array;
 	}
 
+	handleClick = (cardID)=>{
+		const { clicked, hands } = this.state ;
+		const clickedCardIndex = hands.findIndex( (card) => {
+			return card.id === cardID
+		});
+
+		const clickedCard = hands[clickedCardIndex];
+		clickedCard.hidden = !clickedCard.hidden ;
+
+		hands[clickedCardIndex] =  clickedCard ;
+
+		this.setState({hands });
+	}
+
+	flipCard = (cardID) => {
+
+	}
+
+	wait = miliseconds => {
+		return new Promise(resolve => setTimeout(resolve, miliseconds));
+	}
+
 	render() {
 		return (
 			<div className="MemoryApp">
@@ -118,9 +141,11 @@ class StarterCode extends React.Component {
 						this.state.hands.map(card => 
 							<Card
 								key={card.id}
+								id={card.id}
 								rank={card.rank}
 								suit={card.suit}
 								hidden={card.hidden}
+								handleClick={this.handleClick}
 							></Card>
 						)
 					}

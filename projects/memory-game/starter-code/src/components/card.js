@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import {RANKS} from '../GlobalVariables';
 
 const Card = (props) => {
-    const { rank, suit, hidden} = props;
+    const { id, rank, suit, hidden, handleClick} = props;
     
     return (
-        <div className={classNames("card", suit, {hidden: hidden})}> <p>{ RANKS[rank] }</p> </div>
+        <div className={classNames("card", suit, {hidden: hidden})} onClick={()=>handleClick(id)}> <p>{ RANKS[rank] }</p> </div>
     )
 }
 
