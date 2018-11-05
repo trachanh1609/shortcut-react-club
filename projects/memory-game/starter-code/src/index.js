@@ -11,7 +11,8 @@ class StarterCode extends React.Component {
 
 	state = {
 		hands : [],
-		clicked: [],
+		freezedCards : [],
+		hasWinner: false,
 	}
 
 	componentDidMount = () => {
@@ -28,7 +29,7 @@ class StarterCode extends React.Component {
 			const card = {
 				rank: randomRankArray[i],
 				suit: randomSuitArray[i],
-				hidden: false,
+				hidden: true,
 			}
 			const firstCard = {...card, id: i*2};
 			const secondCard= {...card, id: i*2 + 1 }
@@ -36,8 +37,7 @@ class StarterCode extends React.Component {
 			hands.push(secondCard);
 		}
 
-		console.log("hands", hands);
-		this.setState({hands: this.shuffle(hands)})
+		this.setState({hands: this.shuffle(hands), freezedCards: [], hasWinner: false}) ;
 	}
 
 	getRandomSuitArray = (pairs) => {
@@ -92,8 +92,65 @@ class StarterCode extends React.Component {
 		return array;
 	}
 
-	handleClick = (cardID)=>{
-		const { clicked, hands } = this.state ;
+	handleClick = async (cardID)=>{
+		const noOfCards = 8 ;
+		const {freezedCards} = this.state;
+		if( freezedCards.includes(cardID) ) {
+			return
+		} else if (freezedCards.length % 2 === 0) {
+			const firstCardID = await this.flipCard(cardID) ;
+			freezedCards.push(firstCardID);
+			await this.setState({freezedCards});
+		} else if (freezedCards.length % 1 === 0) {
+			const secondCardID = await this.flipCard(cardID) ;
+			const firstCardID = freezedCards.pop();
+			const areSameCards = this.areSameCards(firstCardID, secondCardID);
+			if (areSameCards) {
+				freezedCards.push(firstCardID);
+				freezedCards.push(secondCardID);
+				await this.setState({freezedCards});
+				const hasWinner = await this.hasWinner( noOfCards );
+				await this.setState({hasWinner}) ;
+				
+			} else {
+				const miliseconds = 1000 ;
+				await this.wait(miliseconds);
+				await this.flipCard(firstCardID);
+				await this.flipCard(secondCardID);
+			}
+		}
+		
+
+	}
+
+	hasWinner = (noOfCards) => {
+		const {freezedCards} = this.state ;
+		if ( freezedCards.length === noOfCards) {
+			console.log("Yay, we have a winner !");
+			return true
+		} else {
+			return false
+		}
+	}
+
+	areSameCards = (firstID, secondID) => {
+		const { hands } = this.state;
+
+		const filterCards = hands.filter( card => {
+			return card.id === firstID || card.id === secondID ;
+		})
+
+		if (filterCards.length === 2 && filterCards[0].rank === filterCards[1].rank && filterCards[0].suit === filterCards[1].suit ) {
+			return true ;
+		} else {
+			return false ;
+		}
+	}
+
+	flipCard = (cardID) => {
+		console.log("flipCard started")
+
+		const { hands } = this.state ;
 		const clickedCardIndex = hands.findIndex( (card) => {
 			return card.id === cardID
 		});
@@ -102,12 +159,12 @@ class StarterCode extends React.Component {
 		clickedCard.hidden = !clickedCard.hidden ;
 
 		hands[clickedCardIndex] =  clickedCard ;
-
-		this.setState({hands });
-	}
-
-	flipCard = (cardID) => {
-
+		// this.setState({hands });
+		return new Promise(
+			(resolve) => {
+				this.setState({hands}, resolve(cardID));
+			}
+		);
 	}
 
 	wait = miliseconds => {
@@ -115,6 +172,9 @@ class StarterCode extends React.Component {
 	}
 
 	render() {
+		
+		console.log("hands", this.state.hands);
+		console.log("freezedCards", this.state.freezedCards);
 		return (
 			<div className="MemoryApp">
 
