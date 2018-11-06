@@ -37,7 +37,9 @@ class StarterCode extends React.Component {
 			hands.push(secondCard);
 		}
 
-		this.setState({hands: this.shuffle(hands), freezedCards: [], hasWinner: false}) ;
+		// this.setState({hands: this.shuffle(hands), freezedCards: [], hasWinner: false}) ;
+		this.setState({hands, freezedCards: [], hasWinner: false}) ;
+
 	}
 
 	getRandomSuitArray = (pairs) => {
@@ -93,34 +95,58 @@ class StarterCode extends React.Component {
 	}
 
 	handleClick = async (cardID)=>{
+		console.log("\n Click", cardID);
 		const noOfCards = 8 ;
 		const {freezedCards} = this.state;
 		if( freezedCards.includes(cardID) ) {
+			// debugger;
 			return
 		} else if (freezedCards.length % 2 === 0) {
-			const firstCardID = await this.flipCard(cardID) ;
-			freezedCards.push(firstCardID);
-			await this.setState({freezedCards});
-		} else if (freezedCards.length % 1 === 0) {
+			// debugger
+			freezedCards.push(cardID);
+			await this.setStateAsync({freezedCards});
+			await this.flipCard(cardID) ;
+			
+		} else if (freezedCards.length % 2 === 1) {
+			// debugger
 			const secondCardID = await this.flipCard(cardID) ;
+			// const secondCardID = cardID ;
 			const firstCardID = freezedCards.pop();
+			freezedCards.push(firstCardID);
+			freezedCards.push(secondCardID);
+			await this.setStateAsync({freezedCards});
+			
 			const areSameCards = this.areSameCards(firstCardID, secondCardID);
 			if (areSameCards) {
-				freezedCards.push(firstCardID);
-				freezedCards.push(secondCardID);
-				await this.setState({freezedCards});
+				// debugger
+				// freezedCards.push(firstCardID);
+				// freezedCards.push(secondCardID);
+				// await this.setStateAsync({freezedCards});
 				const hasWinner = await this.hasWinner( noOfCards );
-				await this.setState({hasWinner}) ;
+				await this.setStateAsync({hasWinner}) ;
 				
 			} else {
+				// debugger
+				console.log("freezedCards before 1s", freezedCards);
 				const miliseconds = 1000 ;
 				await this.wait(miliseconds);
+				freezedCards.pop();
+				freezedCards.pop();
+				console.log("firstCardID", firstCardID);
+				console.log("secondCardID", secondCardID);
+				await this.setStateAsync({freezedCards});
 				await this.flipCard(firstCardID);
 				await this.flipCard(secondCardID);
 			}
 		}
 		
 
+	}
+
+	setStateAsync = (state) => {
+		return new Promise((resolve) => {
+		  this.setState(state, resolve)
+		});
 	}
 
 	hasWinner = (noOfCards) => {
@@ -148,7 +174,7 @@ class StarterCode extends React.Component {
 	}
 
 	flipCard = (cardID) => {
-		console.log("flipCard started")
+		console.log("flipCard ", cardID) ;
 
 		const { hands } = this.state ;
 		const clickedCardIndex = hands.findIndex( (card) => {
@@ -173,7 +199,7 @@ class StarterCode extends React.Component {
 
 	render() {
 		
-		console.log("hands", this.state.hands);
+		// console.log("hands", this.state.hands);
 		console.log("freezedCards", this.state.freezedCards);
 		return (
 			<div className="MemoryApp">
