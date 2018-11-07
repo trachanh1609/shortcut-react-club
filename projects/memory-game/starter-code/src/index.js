@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import Card from './components/Card';
+import { HOLDING_TIME } from './GlobalVariables';
 
 // const RANKS = Array.from(Array(13).keys());
 // const SUITS = ['hearts', 'diamonds', 'clubs', 'spades'];
+
 
 class StarterCode extends React.Component {
 
@@ -13,6 +15,7 @@ class StarterCode extends React.Component {
 		hands : [],
 		freezedCards : [],
 		hasWinner: false,
+		onHold: false,
 	}
 
 	componentDidMount = () => {
@@ -38,7 +41,7 @@ class StarterCode extends React.Component {
 		}
 
 		// this.setState({hands: this.shuffle(hands), freezedCards: [], hasWinner: false}) ;
-		this.setState({hands, freezedCards: [], hasWinner: false}) ;
+		this.setState({hands, freezedCards: [], hasWinner: false, onHold: false}) ;
 
 	}
 
@@ -97,44 +100,32 @@ class StarterCode extends React.Component {
 	handleClick = async (cardID)=>{
 		console.log("\n Click", cardID);
 		const noOfCards = 8 ;
-		const {freezedCards} = this.state;
-		if( freezedCards.includes(cardID) ) {
-			// debugger;
+		const {freezedCards, onHold} = this.state;
+		if( freezedCards.includes(cardID) || onHold ) {;
 			return
 		} else if (freezedCards.length % 2 === 0) {
-			// debugger
 			freezedCards.push(cardID);
 			await this.setStateAsync({freezedCards});
 			await this.flipCard(cardID) ;
 			
 		} else if (freezedCards.length % 2 === 1) {
-			// debugger
 			const secondCardID = await this.flipCard(cardID) ;
 			// const secondCardID = cardID ;
 			const firstCardID = freezedCards.pop();
 			freezedCards.push(firstCardID);
 			freezedCards.push(secondCardID);
-			await this.setStateAsync({freezedCards});
+			await this.setStateAsync({freezedCards, onHold: true});
 			
 			const areSameCards = this.areSameCards(firstCardID, secondCardID);
 			if (areSameCards) {
-				// debugger
-				// freezedCards.push(firstCardID);
-				// freezedCards.push(secondCardID);
-				// await this.setStateAsync({freezedCards});
 				const hasWinner = await this.hasWinner( noOfCards );
-				await this.setStateAsync({hasWinner}) ;
+				await this.setStateAsync({hasWinner, onHold: false}) ;
 				
 			} else {
-				// debugger
-				console.log("freezedCards before 1s", freezedCards);
-				const miliseconds = 1000 ;
-				await this.wait(miliseconds);
+				await this.wait(HOLDING_TIME);
 				freezedCards.pop();
 				freezedCards.pop();
-				console.log("firstCardID", firstCardID);
-				console.log("secondCardID", secondCardID);
-				await this.setStateAsync({freezedCards});
+				await this.setStateAsync({freezedCards, onHold: false});
 				await this.flipCard(firstCardID);
 				await this.flipCard(secondCardID);
 			}
