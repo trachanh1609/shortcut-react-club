@@ -5,10 +5,6 @@ import registerServiceWorker from './registerServiceWorker';
 import Card from './components/Card';
 import { HOLDING_TIME } from './GlobalVariables';
 
-// const RANKS = Array.from(Array(13).keys());
-// const SUITS = ['hearts', 'diamonds', 'clubs', 'spades'];
-
-
 class StarterCode extends React.Component {
 
 	state = {
@@ -19,10 +15,10 @@ class StarterCode extends React.Component {
 	}
 
 	componentDidMount = () => {
-		this.initHands();
+		this.initGame();
 	}
 
-	initHands = ()=>{
+	initGame = ()=>{
 		const pairs = 4
 		const randomRankArray = this.getRandomRankArray(pairs);
 		const randomSuitArray = this.getRandomSuitArray(pairs);
@@ -227,7 +223,7 @@ class StarterCode extends React.Component {
 						)
 					}
 
-					<button onClick={this.initHands}>Test Button</button>
+					<button onClick={this.initGame}>Test Button</button>
 
 				</div>
 
