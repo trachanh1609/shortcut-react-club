@@ -40,8 +40,8 @@ class StarterCode extends React.Component {
 			hands.push(secondCard);
 		}
 
-		// this.setState({hands: this.shuffle(hands), freezedCards: [], hasWinner: false}) ;
-		this.setState({hands, freezedCards: [], hasWinner: false, onHold: false}) ;
+		this.setState({hands: this.shuffle(hands), freezedCards: [], hasWinner: false, onHold: false}) ;
+		// this.setState({hands, freezedCards: [], hasWinner: false, onHold: false}) ;
 
 	}
 
